@@ -111,6 +111,8 @@
     cell.textLabel.text = _dataArray[indexPath.section][indexPath.row];
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellAccessoryNone;
+//    cell.tag =  _dataArray[indexPath.section][indexPath.row];
+    cell.tag = indexPath.row;
     return cell;
 }
 
@@ -123,7 +125,7 @@
 }
 
 /**
- *  设置头标题的样式
+ *  设置头标题的样式,我这里是手写了一个button,在button上放的图片,文字.可以用别的方式
  */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -162,7 +164,10 @@
     return button;
 }
 
-- (void)buttonPress:(UIButton *)sender//headButton点击
+/**
+ *  headButton点击
+ */
+- (void)buttonPress:(UIButton *)sender
 {
     //判断状态值
     if ([_stateArray[sender.tag - 1] isEqualToString:@"1"]){
@@ -175,8 +180,29 @@
     
 }
 
+/**
+ *  返回section的高度
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 44;
 }
+/**
+ *  求个大神,解决一下点击事件的问题.
+ */
+
+/*
+ - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    NSLog(@"%ld",cell.tag);
+     cell.tag = !cell.tag;
+    if (cell.tag) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
+ */
 @end
